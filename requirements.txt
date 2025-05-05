@@ -1,0 +1,6 @@
+faiss-cpu
+sentence-transformers
+pypdf
+langchain
+langchain-community
+python-dotenv
