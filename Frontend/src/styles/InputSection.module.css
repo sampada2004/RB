@@ -14,14 +14,16 @@
   outline: none;
   transition: border-color 0.3s;
   font-family: inherit;
+  background-color: #cccccc;
 }
 
 .inputField:focus {
   border-color: #0084ff;
+  background-color: #ffffff;
 }
 
 .inputField::placeholder {
-  color: #aaa;
+  color: white;
 }
 
 .sendButton {

@@ -25,7 +25,7 @@ const HistorySection = ({ history, handleHistoryClick, handleClearChat }) => {
         onClick={handleClearChat}
         disabled={history.length === 0}
       >
-        Clear History
+        Clear Chat
       </button>
     </div>
   );
