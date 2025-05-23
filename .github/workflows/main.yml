@@ -39,10 +39,10 @@ jobs:
           node-version: '20'
 
       - name: Install Frontend Dependencies
-        working-directory: ./TempFrontend
+        working-directory: ./Frontend
         run: npm install
 
       - name: Run Frontend Build/Check
-        working-directory: ./TempFrontend
+        working-directory: ./Frontend
         run: |
           echo "✅ Frontend setup complete. Add tests/build commands here."
