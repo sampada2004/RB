@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./Config/Database.js";
-import Query from "./Models/Queries.js";
+import router from "./Routes/QueryRoute.js";
 
 dotenv.config();
 
@@ -15,19 +15,7 @@ const webServer = express();
 webServer.use(cors());
 webServer.use(express.json());
 
-
-
-webServer.post("/queries", (request, response)=>
-{
-    const query = request.body;
-
-    if(!query.question)
-    {
-        response.status(400).json({ success: false, message: "Please enter a valid question"});
-    }
-
-    const newQuery = new Query(query);
-})
+webServer.use("/api", router);
 
 webServer.listen(5000, ()=>
 {

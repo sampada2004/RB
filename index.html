@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ask RAG Model</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    input, button { padding: 0.5em; font-size: 1em; }
+    #answer { margin-top: 1em; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Ask the RAG Model</h2>
+  <input type="text" id="question" placeholder="Type your question" size="50">
+  <button onclick="askQuestion()">Ask</button>
+  <div id="answer"></div>
+
+  <script>
+    async function askQuestion() {
+  const question = document.getElementById('question').value;
+  const answerDiv = document.getElementById('answer');
+  answerDiv.textContent = 'Loading...';
+
+  try {
+    const response = await fetch('http://localhost:5000/api/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question })
+    });
+
+    if (!response.ok) {
+      // Try to read the error as text for debugging
+      const errorText = await response.text();
+      answerDiv.textContent = 'Server error: ' + errorText;
+      return;
+    }
+
+    const data = await response.json();
+    answerDiv.textContent = 'Answer: ' + data.answer;
+  } catch (error) {
+    answerDiv.textContent = 'Network error: ' + error.message;
+  }
+}
+
+  </script>
+</body>
+</html>
