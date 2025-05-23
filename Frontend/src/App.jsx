@@ -53,7 +53,6 @@ function App() {
       const aiMessage = {
         content: data.answer,
         role: 'assistant',
-        sources: data.sources || []
       };
 
       setMessages(prev => [...prev, aiMessage]);

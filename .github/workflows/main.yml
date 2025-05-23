@@ -1,4 +1,4 @@
-name: RITBuddy ci
+name: RITBuddy CI
 
 on:
   push:
@@ -9,19 +9,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
-    - name: Install Backend Dependencies
-      working-directory: ./backend
-      run: npm install
+      - name: Install Backend Dependencies
+        working-directory: ./TempBackend
+        run: npm install
 
-    - name: Run Backend Build/Check
-      working-directory: ./backend
-      run: |
-        echo "✅ Backend setup complete. Add tests if needed."
+      - name: Run Backend Build/Check
+        working-directory: ./TempBackend
+        run: |
+          echo "✅ Backend setup complete. Add tests if needed."
+
+  frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install Frontend Dependencies
+        working-directory: ./TempFrontend
+        run: npm install
+
+      - name: Run Frontend Build/Check
+        working-directory: ./TempFrontend
+        run: |
+          echo "✅ Frontend setup complete. Add tests/build commands here."
