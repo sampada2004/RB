@@ -12,6 +12,8 @@ from PIL import Image
 import pytesseract
 import io
 
+from Security.Decrypt import decrypt_file;
+
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 
@@ -32,6 +34,7 @@ def extract_text_from_images_in_pdf(pdf_path):
                     ocr_texts.append(text.strip())
     return "\n".join(ocr_texts)
 
+decrypt_file("data/circulars2.enc", "data/circulars2.pdf")
 pdf_file_path = "data/circulars2.pdf"
 
 ocr_text = extract_text_from_images_in_pdf(pdf_file_path)
