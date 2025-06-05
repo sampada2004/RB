@@ -13,12 +13,11 @@ import pytesseract
 import io
 
 from Security.Decrypt import decrypt_file
-from monitoring import monitor_rag_stage, monitor_llm, record_event, measure_query
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 
-@monitor_rag_stage(stage="ocr_extraction")
+#@monitor_rag_stage(stage="ocr_extraction")
 def extract_text_from_images_in_pdf(pdf_path):
     """Extract text from images inside PDF pages using pdfplumber + pytesseract OCR."""
     ocr_texts = []
@@ -35,7 +34,7 @@ def extract_text_from_images_in_pdf(pdf_path):
                 if text.strip():
                     ocr_texts.append(text.strip())
     
-    record_event("pdf_ocr_processed", "success")
+    #record_event("pdf_ocr_processed", "success")
     return "\n".join(ocr_texts)
 
 # Skip decryption for testing monitoring
@@ -72,7 +71,7 @@ dimension = embeddings[0].shape[0]
 index = faiss.IndexFlatL2(dimension)
 index.add(np.array(embeddings))
 
-@measure_query(query_type="rag_query")
+#@measure_query(query_type="rag_query")
 def ask_question(query):
     # Embedding generation
     start_embedding_time = time.time()

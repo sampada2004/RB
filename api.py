@@ -2,16 +2,14 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import rag
 import time
-from monitoring import start_metrics_server, monitor_resources, QUERY_PROCESSING_TIME, record_event
-
 app = Flask(__name__)
 CORS(app)
 
 # Start Prometheus metrics server
-start_metrics_server(port=8000)
+#start_metrics_server(port=8000)
 
 # Start resource monitoring in background
-monitor_thread = monitor_resources(interval=5)
+#monitor_thread = monitor_resources(interval=5)
 
 @app.route('/ask', methods=['POST'])
 def ask():
@@ -43,7 +41,7 @@ def ask():
     
     except Exception as e:
         # Record failed API request
-        record_event("api_request", "failure")
+        #record_event("api_request", "failure")
         print(f"Error: {e}")
         return jsonify({'error': str(e)}), 500
 

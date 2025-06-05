@@ -125,7 +125,7 @@ function App()
             <HistorySection 
               history={history} 
               handleHistoryClick={handleHistoryClick} 
-              handleClearChat={handleClearChat} 
+              handleClearChat={handleClearChat}
             />
           </div>
         </div>
